@@ -29,11 +29,11 @@ const Card = (props) => {
             width: '100%',
         },
         dot: {
-            width: 10,
-            height: 10,
+            width: '10px',
+            aspectRatio: 1 / 1,
             borderRadius: 10,
-            backgroundColor: 'green',
-            margin: 5,
+            // backgroundColor: 'green',
+            // padding: 5,
         },
         detailsEle: {
 
@@ -51,21 +51,37 @@ const Card = (props) => {
             />
             <div style={styles.details}>
                 <div style={styles.detailsEle}>
-                    {props.first_name} {props.last_name}
+                    {props.first_name} {props.last_name} <span style={{
+                        color: 'gray',
+                        fontSize: 12,
+                    }}>
+                        ({props.gender})
+                    </span>
                 </div>
                 <div style={styles.detailsEle}>{props.domain}</div>
                 <div style={styles.detailsEle}>{props.email}</div>
-                <div style={styles.detailsEle}>
-                    <span style={styles.dot}></span>
+                <div style={{
+                    ...styles.detailsEle,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '5px'
+                }}>
+                    <div style={{
+                        ...styles.dot,
+                        backgroundColor: props.available ? 'green' : 'red',
+                    }}></div>
                     {props.available ? 'Available' : 'Not Available'}
                 </div>
                 <Button
-                    // variant="contained"
                     color="primary"
                     sx={{
                         padding: '5px 10px',
                         margin: '0 0 0 auto',
                         textTransform: 'capitalize',
+                    }}
+                    onClick={(e) => {
+                        props.setMemberTemp(props.data);
+                        props.setShowPopup(true);
                     }}
                 >Add to Team</Button>
             </div>
