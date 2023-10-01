@@ -52,7 +52,10 @@ const AvailableTeams = (props) => {
                     style={{
                         cursor: 'pointer',
                     }}
-                    onClick={() => props.setShowPopup(false)}
+                    onClick={() => {
+                        props.setShowPopup(false)
+                        props.setMemberTemp(null)
+                    }}
                 />
             </div>
             <div style={{
